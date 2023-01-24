@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherited form view of project.task -->
+        <record id="locatie_fieldservice_task_view_form" model="ir.ui.view">
+            <field name="name">locatie.fieldservice.task.view.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_ids']" position="after">
+                    <field name="x_aa_locatie_id"/>
+                    <field name="x_aa_equipment_id" domain="[('x_aa_locatie_id', '=', x_aa_locatie_id)]"/>
+                    <field name="x_aa_partner_id" invisible="1"/>
+                    <field name="x_aa_location_partner_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">['|', ('id', '=',x_aa_partner_id), ('id', '=', x_aa_location_partner_id)]</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

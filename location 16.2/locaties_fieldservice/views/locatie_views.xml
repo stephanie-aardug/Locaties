@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Inherited form view of locatie.locatie -->
+        <record id="locatie_view_form_inherit_fieldservice" model="ir.ui.view">
+            <field name="name">locatie.view.form.inherit.fieldservice</field>
+            <field name="model">locatie.locatie</field>
+            <field name="inherit_id" ref="locaties.locatie_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" icon="fa-pencil" type="object"
+                            name="action_open_fieldservice_task">
+                        <field widget="statinfo" name="x_aa_fieldservice_task_count" string="Fieldservice tasks"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

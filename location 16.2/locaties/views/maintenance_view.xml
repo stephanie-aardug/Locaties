@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Inherited form view of maintenance.equipment -->
+        <record id="locatie_hr_equipment_view_form" model="ir.ui.view">
+            <field name="name">locatie.equipment.form.view</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location']" position="after">
+                    <field name="x_aa_locatie_id"/>
+                    <field name="x_aa_specific_location"/>
+                    <field name="x_aa_location_customer_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherited search view of maintenance.equipment -->
+        <record id="locatie_hr_equipment_view_search" model="ir.ui.view">
+            <field name="name">locatie.equipment.search.view</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/filter[@name='vendor']" position="after">
+                    <separator/>
+                    <filter string="Location" name="location" domain="[]" context="{'group_by': 'x_aa_locatie_id'}"/>
+                    <filter string="Customer" name="customer" domain="[]"
+                            context="{'group_by': 'x_aa_location_customer_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherited form view of maintenance.request -->
+        <record id="locatie_maintenance_request_view_form" model="ir.ui.view">
+            <field name="name">locatie.maintenance.request.form.view</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="x_aa_locatie_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
